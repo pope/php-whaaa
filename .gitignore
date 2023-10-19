@@ -1,0 +1,6 @@
+.direnv/
+go/php-whaaa
+go/posts.json
+php-fast/posts.json
+php/posts.json
+vendor/
