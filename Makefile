@@ -29,7 +29,7 @@ run-rust: rust/target/release/php-whaaa
 	./rust/target/release/php-whaaa
 
 benchmark:
-	plow -c 20 -n 100000 http://127.0.0.1:8001
+	oha -c 20 -z 10s http://127.0.0.1:8001
 
 clean:
 	rm go/php-whaaa go/posts.json php/posts.json
