@@ -3,13 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-formatter-pack = {
       url = "github:Gerschtli/nix-formatter-pack";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nix-formatter-pack, ... }:
+  outputs = { nixpkgs, nix-formatter-pack, rust-overlay, ... }:
     let
       eachSystem = nixpkgs.lib.genAttrs [
         "aarch64-darwin"
@@ -19,8 +23,9 @@
     {
       devShells = eachSystem (system:
         let
+          overlays = [ (import rust-overlay) ];
           pkgs = import nixpkgs {
-            inherit system;
+            inherit system overlays;
           };
         in
         with pkgs;
@@ -54,6 +59,9 @@
                 };
                 vendorSha256 = "sha256-t2lBPyCn8bu9hLsWmaCGir9egbX0mQR+8kB0RfY7nHE=";
               })
+              rust-bin.stable.latest.default
+              rust-analyzer
+              rustfmt
             ];
           };
         }
