@@ -1,13 +1,17 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$server = new OpenSwoole\HTTP\Server('127.0.0.1', 8001);
+use OpenSwoole\HTTP\Request;
+use OpenSwoole\HTTP\Response;
+use OpenSwoole\HTTP\Server;
 
-$server->on('start', function (OpenSwoole\HTTP\Server $server) {
+$server = new Server('127.0.0.1', 8001);
+
+$server->on('start', function (Server $server) {
 	echo "Server is started at http://127.0.0.1:8001\n";
 });
 
-$server->on('request', function (OpenSwoole\HTTP\Request $request, OpenSwoole\HTTP\Response $response) {
+$server->on('request', function (Request $request, Response $response) {
 	$data = json_decode(file_get_contents(__DIR__ . '/posts.json'));
 
 	$items = array_map(function ($item) {
