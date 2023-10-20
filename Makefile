@@ -1,3 +1,6 @@
+vendor:
+	composer install
+
 php/posts.json: posts.json
 	cp posts.json php/posts.json
 
@@ -13,7 +16,7 @@ go/php-whaaa: go/main.go
 run-php: php/posts.json
 	cd php && php -S 127.0.0.1:8001
 
-run-php-fast: php-fast/posts.json
+run-php-fast: php-fast/posts.json vendor
 	cd php-fast && php index.php
 
 run-go: go/php-whaaa go/posts.json
