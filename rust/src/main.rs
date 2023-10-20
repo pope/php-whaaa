@@ -44,7 +44,7 @@ async fn index(
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-	let addr = SocketAddr::from(([127, 0, 0, 1], 8001));
+	let addr = SocketAddr::from(([0, 0, 0, 0], 8001));
 
 	let listener = TcpListener::bind(addr).await?;
 

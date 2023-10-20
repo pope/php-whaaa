@@ -5,10 +5,10 @@ use OpenSwoole\HTTP\Request;
 use OpenSwoole\HTTP\Response;
 use OpenSwoole\HTTP\Server;
 
-$server = new Server('127.0.0.1', 8001);
+$server = new Server('0.0.0.0', 8001);
 
 $server->on('start', function (Server $server) {
-	echo "Server is started at http://127.0.0.1:8001\n";
+	echo "Server is started at http://0.0.0.0:8001\n";
 });
 
 $server->on('request', function (Request $request, Response $response) {

@@ -17,7 +17,7 @@ rust/target/release/php-whaaa: rust/src/main.rs rust/Cargo.toml rust/Cargo.lock
 	cd rust && cargo build --release
 
 run-php: php/posts.json
-	cd php && php -S 127.0.0.1:8001
+	cd php && php -S 0.0.0.0:8001
 
 run-php-fast: php-fast/posts.json vendor
 	cd php-fast && php index.php
