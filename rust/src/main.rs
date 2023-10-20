@@ -7,7 +7,7 @@ use hyper::{
 use hyper_util::rt::TokioIo;
 use serde::{Deserialize, Serialize};
 use titlecase::titlecase;
-use tokio::{fs, net::TcpListener};
+use tokio::net::TcpListener;
 
 #[derive(Serialize, Deserialize)]
 struct PostCollection {
@@ -23,7 +23,8 @@ struct Post {
 async fn index(
 	_: Request<hyper::body::Incoming>,
 ) -> anyhow::Result<Response<Full<Bytes>>> {
-	let json = fs::read_to_string("posts.json").await?;
+	// let json = tokio::fs::read_to_string("posts.json").await?;
+	let json = std::fs::read_to_string("posts.json")?;
 	let doc: PostCollection = serde_json::from_str(&json)?;
 	let posts = doc
 		.posts
