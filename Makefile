@@ -32,5 +32,5 @@ benchmark:
 	oha -c 20 -z 10s http://127.0.0.1:8001
 
 clean:
-	rm go/php-whaaa go/posts.json php/posts.json
+	-rm go/php-whaaa go/posts.json php/posts.json
 	cd rust && cargo clean
